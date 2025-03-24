@@ -83,24 +83,23 @@ contract V2OnV4Hook is BaseHook {
         override
         returns (Hooks.Permissions memory)
     {
-        Hooks.Permissions memory permissions;
-
-        permissions.beforeInitialize = false;
-        permissions.afterInitialize = false;
-        permissions.beforeAddLiquidity = true;
-        permissions.afterAddLiquidity = true;
-        permissions.beforeRemoveLiquidity = false;
-        permissions.afterRemoveLiquidity = true;
-        permissions.beforeSwap = true;
-        permissions.afterSwap = true;
-        permissions.beforeDonate = false;
-        permissions.afterDonate = false;
-        permissions.beforeSwapReturnDelta = true;
-        permissions.afterSwapReturnDelta = false;
-        permissions.afterAddLiquidityReturnDelta = false;
-        permissions.afterRemoveLiquidityReturnDelta = false;
-
-        return permissions;
+        return
+            Hooks.Permissions({
+                beforeInitialize: false,
+                afterInitialize: false,
+                beforeAddLiquidity: true,
+                afterAddLiquidity: true,
+                beforeRemoveLiquidity: false,
+                afterRemoveLiquidity: true,
+                beforeSwap: true,
+                afterSwap: true,
+                beforeDonate: false,
+                afterDonate: false,
+                beforeSwapReturnDelta: true,
+                afterSwapReturnDelta: false,
+                afterAddLiquidityReturnDelta: false,
+                afterRemoveLiquidityReturnDelta: false
+            });
     }
 
     /**
