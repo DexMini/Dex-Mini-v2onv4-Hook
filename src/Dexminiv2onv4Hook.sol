@@ -295,7 +295,7 @@ contract V2OnV4Hook is BaseHook {
      * @param x The number to calculate the square root of.
      * @return y The square root of x.
      */
-    function gasEfficientSqrt(uint256 x) internal pure returns (uint256 y) {
+    function gasEfficientSqrt(uint256 x) public pure returns (uint256 y) {
         // Use ABDKMath64x64 for gas-efficient fixed-point square root calculation
         int128 sqrtResult = ABDKMath64x64.sqrt(ABDKMath64x64.fromUInt(x));
         return ABDKMath64x64.toUInt(sqrtResult);
@@ -309,5 +309,27 @@ contract V2OnV4Hook is BaseHook {
      */
     function min(uint256 a, uint256 b) internal pure returns (uint256) {
         return a < b ? a : b;
+    }
+
+    // Test helper functions - for testing purposes only
+
+    /**
+     * @notice Test helper to set reserves directly (for testing only)
+     * @param _reserve0 Amount of token0 reserves to set
+     * @param _reserve1 Amount of token1 reserves to set
+     */
+    function testSetReserves(uint256 _reserve0, uint256 _reserve1) external {
+        reserve0 = _reserve0;
+        reserve1 = _reserve1;
+    }
+
+    /**
+     * @notice Test helper to mint LP tokens directly (for testing only)
+     * @param to Address to mint tokens to
+     * @param amount Amount of LP tokens to mint
+     */
+    function testMintLP(address to, uint256 amount) external {
+        totalLPTokens += amount;
+        balanceOf[to] += amount;
     }
 }
